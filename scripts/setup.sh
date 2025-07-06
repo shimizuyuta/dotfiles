@@ -1,21 +1,20 @@
 #!/bin/zsh
 set -e
-
-echo "🔧 Setting up environment..."
+echo "🔧 環境をセットアップしています..."
 
 # Homebrewのインストールチェック
 if ! command -v brew &> /dev/null; then
-  echo "📦 Installing Homebrew..."
+  echo "📦 Homebrewをインストールしています..."
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
 # Brewfileからインストール
-echo "🍺 Installing packages from Brewfile..."
+echo "🍺 Brewfileからパッケージをインストールしています..."
 brew bundle --file="$PWD/../Brewfile"
 
 # dotfilesをホームにリンク
-echo "🔗 Linking dotfiles..."
+echo "🔗 dotfilesをリンクしています..."
 ln -sf "$PWD/../.zshrc" "$HOME/.zshrc"
 ln -sf "$PWD/../.gitconfig" "$HOME/.gitconfig"
 
@@ -25,7 +24,6 @@ chmod 700 "$HOME/.ssh"
 
 # すでに存在するSSH鍵（秘密鍵）を検出
 EXISTING_KEY=$(find "$HOME/.ssh" -type f -name "id_*" ! -name "*.pub" | head -n 1)
-
 if [[ -n "$EXISTING_KEY" ]]; then
   echo "✅ 既存のSSH鍵が見つかりました: $EXISTING_KEY"
   SSH_KEY="$EXISTING_KEY"
@@ -47,6 +45,7 @@ echo "📋 以下のSSH公開鍵をGitHubに登録してください:"
 echo "--------------------------------------------"
 cat "$PUB_KEY"
 echo "--------------------------------------------"
-
-
-echo "✅ Setup complete!"
+echo ""
+echo "✅ セットアップが完了しました！"
+echo "💡 新しい設定を有効にするため、以下のコマンドを実行してください:"
+echo "   source ~/.zshrc"
