@@ -11,9 +11,9 @@ cask "postman"               # APIテストツール
 cask "docker"                # Docker Desktop（GUI含む）
 cask "cursor"                # AIコーディングエディタ
 cask "clipy"                 # クリップボード管理ツール
+cask "obsidian"  
 cask "zoom"                  # Zoom会議
 cask "slack"                 # Slackクライアント
-cask "notion"                # Notion（誤字 "notiton" → "notion" に修正）
 cask "1password"             # パスワード管理
 
 # --- Mac App Store apps ---
